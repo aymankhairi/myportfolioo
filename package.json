@@ -2,6 +2,7 @@
   "name": "myportfolioo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://aymankhairi.github.io/myportfolioo",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
