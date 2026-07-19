@@ -1,0 +1,3 @@
+export const assetPath = (path: string) => {
+  return `${path}`;
+};
