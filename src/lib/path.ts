@@ -1,3 +1,3 @@
 export const assetPath = (path: string) => {
-  return `/myportfolioo/${path}`;
+  return `/${path}`;
 };
