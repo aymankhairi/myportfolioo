@@ -245,7 +245,7 @@ export default function Navbar() {
               ))}
 
               <a
-                href="/resume.pdf"
+                href="/AymanKhairiCv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
