@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
-import { Mail, MessageCircle, Send, Check } from "lucide-react";
+import {
+  Mail,
+  MessageCircle,
+  Send,
+  Check,
+  Loader2,
+  ArrowUpRight,
+} from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Contact() {
@@ -12,7 +19,9 @@ export default function Contact() {
     message: "",
   });
 
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
+
+  const [error, setError] = useState("");
 
   const container: Variants = {
     hidden: {},
@@ -33,7 +42,6 @@ export default function Contact() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -42,25 +50,25 @@ export default function Contact() {
     {
       name: "Email",
       value: "aymanakh99@gmail.com",
-      icon: <Mail size={20} />,
+      icon: <Mail size={22} />,
       link: "mailto:aymanakh99@gmail.com",
     },
     {
       name: "GitHub",
       value: "github.com/aymankhairi",
-      icon: <FaGithub size={20} />,
+      icon: <FaGithub size={22} />,
       link: "https://github.com/aymankhairi",
     },
     {
       name: "LinkedIn",
-      value: "LinkedIn Profile",
-      icon: <FaLinkedin size={20} />,
-      link: "linkedin.com/in/aymankhairi",
+      value: "linkedin.com/in/aymankhairi",
+      icon: <FaLinkedin size={22} />,
+      link: "https://linkedin.com/in/aymankhairi",
     },
     {
       name: "WhatsApp",
-      value: "Chat with me",
-      icon: <MessageCircle size={20} />,
+      value: "Start a conversation",
+      icon: <MessageCircle size={22} />,
       link: "https://wa.me/963964682595",
     },
   ];
@@ -72,25 +80,34 @@ export default function Contact() {
       ...form,
       [e.target.name]: e.target.value,
     });
+
+    setError("");
   };
 
-  const isValid = form.name.trim() && form.email.trim() && form.message.trim();
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!isValid) return;
+    if (!form.name || !form.email || !form.message) {
+      setError("Please complete all fields.");
+      return;
+    }
 
-    setSent(true);
+    setStatus("sending");
+
+    // connect your email service here
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setStatus("success");
 
     setTimeout(() => {
-      setSent(false);
+      setStatus("idle");
+
       setForm({
         name: "",
         email: "",
         message: "",
       });
-    }, 2500);
+    }, 3000);
   };
 
   return (
@@ -98,27 +115,36 @@ export default function Contact() {
       id="contact"
       className="
       relative
-      py-28
+      py-32
       px-6
       overflow-hidden
       scroll-mt-24
       "
     >
       {/* Background */}
+
       <div
         className="
         absolute
-        top-1/2
-        left-1/2
-        -translate-x-1/2
-        -translate-y-1/2
-        w-[800px]
-        h-[800px]
-        bg-cyan-500/10
-        blur-[180px]
-        rounded-full
+        inset-0
+        pointer-events-none
         "
-      />
+      >
+        <div
+          className="
+          absolute
+          top-1/2
+          left-1/2
+          -translate-x-1/2
+          -translate-y-1/2
+          w-[900px]
+          h-[900px]
+          rounded-full
+          bg-cyan-500/10
+          blur-[220px]
+          "
+        />
+      </div>
 
       <motion.div
         variants={container}
@@ -129,16 +155,17 @@ export default function Contact() {
           amount: 0.2,
         }}
         className="
-        max-w-6xl
-        mx-auto
         relative
         z-10
+        max-w-6xl
+        mx-auto
         grid
         lg:grid-cols-2
-        gap-14
+        gap-16
         "
       >
-        {/* LEFT */}
+        {/* LEFT SIDE */}
+
         <motion.div variants={item}>
           <span
             className="
@@ -153,61 +180,23 @@ export default function Contact() {
 
           <h2
             className="
-            mt-5
-            text-4xl
+            mt-6
+            text-5xl
             md:text-6xl
             font-bold
             leading-tight
             "
           >
-            Let's Create
+            Let's build
             <span
               className="
               block
               text-gray-400
               "
             >
-              Something Great
+              something amazing
             </span>
           </h2>
-
-          <motion.div
-            whileHover={{
-              scale: 1.03,
-            }}
-            className="
-            mt-8
-            inline-flex
-            items-center
-            gap-4
-            px-5
-            py-3
-            rounded-2xl
-            bg-green-500/10
-            border
-            border-green-500/20
-            "
-          >
-            <span
-              className="
-              w-3
-              h-3
-              bg-green-400
-              rounded-full
-              animate-pulse
-              "
-            />
-
-            <div>
-              <p className="text-green-400 font-semibold">
-                Available for freelance
-              </p>
-
-              <p className="text-gray-500 text-sm">
-                Usually replies within 24 hours
-              </p>
-            </div>
-          </motion.div>
 
           <p
             className="
@@ -215,47 +204,100 @@ export default function Contact() {
             text-gray-400
             text-lg
             leading-8
+            max-w-xl
             "
           >
-            Have a website, application, or business idea? Let's transform it
-            into a modern digital solution.
+            I'm available for freelance projects, collaborations, and software
+            development opportunities. Whether you need a website, web
+            application, or complete digital solution, I can help bring your
+            idea to life.
           </p>
 
-          <div className="mt-10 space-y-4">
-            {socials.map((social, index) => (
+          {/* Availability */}
+
+          <div
+            className="
+            mt-8
+            inline-flex
+            items-center
+            gap-4
+            px-5
+            py-4
+            rounded-2xl
+            border
+            border-green-500/20
+            bg-green-500/10
+            "
+          >
+            <span
+              className="
+              w-3
+              h-3
+              rounded-full
+              bg-green-400
+              animate-pulse
+              "
+            />
+
+            <div>
+              <p
+                className="
+                text-green-400
+                font-semibold
+                "
+              >
+                Available for opportunities
+              </p>
+
+              <p
+                className="
+                text-gray-500
+                text-sm
+                "
+              >
+                Response within 24 hours
+              </p>
+            </div>
+          </div>
+
+          {/* Socials */}
+
+          <div
+            className="
+            mt-10
+            grid
+            sm:grid-cols-2
+            gap-4
+            "
+          >
+            {socials.map((social) => (
               <motion.a
                 key={social.name}
                 href={social.link}
                 target="_blank"
-                initial={{
-                  opacity: 0,
-                  x: -20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                transition={{
-                  delay: index * 0.1,
+                whileHover={{
+                  y: -5,
                 }}
                 className="
-                flex
-                items-center
-                gap-4
-                group
-                "
+              flex
+              items-center
+              gap-4
+              p-4
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/[0.04]
+              hover:border-cyan-400/40
+              transition
+              "
               >
                 <div
                   className="
-                  p-3
-                  rounded-xl
-                  bg-white/5
-                  border
-                  border-white/10
-                  group-hover:border-cyan-400/50
-                  group-hover:text-cyan-400
-                  transition
-                  "
+                p-3
+                rounded-xl
+                bg-white/5
+                text-cyan-400
+                "
                 >
                   {social.icon}
                 </div>
@@ -265,14 +307,21 @@ export default function Contact() {
 
                   <p
                     className="
-                  text-gray-300
-                  group-hover:text-cyan-400
-                  transition
-                  "
+                text-sm
+                text-gray-300
+                "
                   >
                     {social.value}
                   </p>
                 </div>
+
+                <ArrowUpRight
+                  size={16}
+                  className="
+                ml-auto
+                text-gray-500
+                "
+                />
               </motion.a>
             ))}
           </div>
@@ -284,58 +333,40 @@ export default function Contact() {
           variants={item}
           onSubmit={handleSubmit}
           className="
-          relative
-          h-fit
-          p-6
+          p-8
           rounded-3xl
-          bg-white/[0.04]
           border
           border-white/10
+          bg-white/[0.04]
           backdrop-blur-xl
-          shadow-2xl
           "
         >
-          <div
-            className="
-            absolute
-            top-0
-            left-10
-            right-10
-            h-px
-            bg-gradient-to-r
-            from-transparent
-            via-cyan-400
-            to-transparent
-            "
-          />
-
           <h3
             className="
             text-2xl
             font-bold
-            mb-6
+            mb-8
             "
           >
-            Send Message
+            Send a message
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-5">
             <input
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="Your Name"
+              placeholder="Your name"
               className="
               w-full
-              px-4
-              py-3
+              px-5
+              py-4
               rounded-xl
               bg-black/40
               border
               border-white/10
-              focus:border-cyan-400
               outline-none
-              transition
+              focus:border-cyan-400
               "
             />
 
@@ -344,71 +375,87 @@ export default function Contact() {
               type="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="Your Email"
+              placeholder="Email address"
               className="
               w-full
-              px-4
-              py-3
+              px-5
+              py-4
               rounded-xl
               bg-black/40
               border
               border-white/10
-              focus:border-cyan-400
               outline-none
-              transition
+              focus:border-cyan-400
               "
             />
 
             <textarea
               name="message"
-              rows={4}
+              rows={5}
               value={form.message}
               onChange={handleChange}
-              placeholder="Your Message"
+              placeholder="Tell me about your project..."
               className="
               w-full
-              px-4
-              py-3
+              px-5
+              py-4
               rounded-xl
               bg-black/40
               border
               border-white/10
-              focus:border-cyan-400
               outline-none
               resize-none
-              transition
+              focus:border-cyan-400
               "
             />
 
+            {error && (
+              <p
+                className="
+              text-red-400
+              text-sm
+              "
+              >
+                {error}
+              </p>
+            )}
+
             <motion.button
-              disabled={!isValid}
-              whileHover={isValid ? { scale: 1.03 } : {}}
-              whileTap={isValid ? { scale: 0.97 } : {}}
-              className={`
+              whileHover={{
+                scale: 1.03,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
+              disabled={status === "sending"}
+              className="
               w-full
-              py-3
+              py-4
               rounded-xl
+              bg-cyan-500
+              text-black
+              font-bold
               flex
               justify-center
               items-center
               gap-2
-              font-semibold
-              transition
-
-              ${
-                isValid
-                  ? "bg-white text-black"
-                  : "bg-white/20 text-gray-500 cursor-not-allowed"
-              }
-
-              `}
+              "
             >
-              {sent ? (
+              {status === "sending" && (
                 <>
-                  Sent
+                  Sending
+                  <Loader2 className="animate-spin" size={18} />
+                </>
+              )}
+
+              {status === "success" && (
+                <>
+                  Sent Successfully
                   <Check size={18} />
                 </>
-              ) : (
+              )}
+
+              {status === "idle" && (
                 <>
                   Send Message
                   <Send size={18} />
