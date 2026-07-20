@@ -70,7 +70,6 @@ export default function Navbar() {
         "
       >
         {/* Logo */}
-        {/* Logo */}
         <motion.button
           onClick={() => {
             window.scrollTo({
