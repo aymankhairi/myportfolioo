@@ -9,27 +9,34 @@ const skills = [
       "React",
       "Next.js",
       "TypeScript",
+      "JavaScript",
       "Tailwind CSS",
       "HTML5",
       "CSS3",
-      "JavaScript",
       "Bootstrap",
     ],
   },
   {
     category: "Backend Development",
-    items: ["C#", "ASP.NET Core", "Entity Framework Core", "REST APIs", "PHP"],
+    items: [
+      "C#",
+      "ASP.NET Core",
+      "Entity Framework Core",
+      "LINQ",
+      "REST APIs",
+      "PHP",
+    ],
   },
   {
     category: "Database & Storage",
-    items: ["SQL Server", "Database Design", "Data Management"],
+    items: ["SQL Server", "Database Design", "Data Modeling", "Firebase"],
   },
   {
     category: "Mobile Development",
-    items: ["Flutter", "Dart", "Firebase", "Mobile UI Development"],
+    items: ["Flutter", "Dart", "Firebase", "Cross-platform Apps"],
   },
   {
-    category: "Tools & Workflow",
+    category: "Tools & Deployment",
     items: ["Git", "GitHub", "Postman", "VS Code", "Netlify", "Vercel"],
   },
 ];
@@ -149,7 +156,7 @@ export default function Skills() {
             leading-tight
           "
           >
-            Technologies I Work With
+            My Technical Stack
           </h2>
 
           <p
