@@ -70,28 +70,51 @@ export default function Navbar() {
         "
       >
         {/* Logo */}
-        <div className="cursor-pointer">
+        {/* Logo */}
+        <motion.button
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          }}
+          whileHover={{
+            scale: 1.03,
+          }}
+          whileTap={{
+            scale: 0.97,
+          }}
+          className="
+    text-left
+    cursor-pointer
+    group
+  "
+        >
           <h1
             className="
-              font-bold
-              text-xl
-              tracking-wide
-            "
+      font-bold
+      text-xl
+      tracking-wide
+      group-hover:text-cyan-400
+      transition
+    "
           >
             Ayman Khairi
           </h1>
 
           <p
             className="
-              text-xs
-              text-gray-400
-              hidden
-              sm:block
-            "
+      text-xs
+      text-gray-400
+      hidden
+      sm:block
+      group-hover:text-cyan-300
+      transition
+    "
           >
             Full Stack Developer
           </p>
-        </div>
+        </motion.button>
 
         {/* Desktop Menu */}
         <div
