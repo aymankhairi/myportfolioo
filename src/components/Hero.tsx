@@ -118,7 +118,7 @@ export default function Hero() {
             tracking-tight
           "
         >
-          Building Digital
+          Building Software
           <br />
           <span
             className="
@@ -132,7 +132,7 @@ export default function Hero() {
               animate-gradient
             "
           >
-            Solutions That Scale
+            That Businesses Actually Use
           </span>
         </motion.h1>
 
@@ -147,10 +147,11 @@ export default function Hero() {
             leading-relaxed
           "
         >
-          I am Ayman Khairi, a Full Stack Developer specialized in building
-          modern web applications, e-commerce platforms, business systems, and
-          mobile applications with a focus on performance, scalability, and user
-          experience.
+          I'm Ayman Khairi, a Full Stack Developer who transforms ideas into
+          scalable digital products. I design and build web applications,
+          business systems, e-commerce platforms, and mobile experiences with a
+          strong focus on performance, usability, and long-term maintainability.
+          Specialized in: E-Commerce • SaaS • Business Systems
         </motion.p>
 
         {/* Buttons */}
@@ -187,7 +188,7 @@ export default function Hero() {
               shadow-lg
             "
           >
-            View Projects
+            Explore My Work
             <motion.div
               animate={{
                 x: [0, 4, 0],
@@ -224,7 +225,7 @@ export default function Hero() {
               justify-center
             "
           >
-            Contact Me
+            Get In Touch
           </motion.a>
         </motion.div>
       </motion.div>
