@@ -134,7 +134,7 @@ export default function Navbar() {
 
           {/* Resume Button */}
           <a
-            href="/resume.pdf"
+            href="/AymanKhairiCv.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="
