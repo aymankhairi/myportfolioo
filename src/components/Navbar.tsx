@@ -70,7 +70,7 @@ export default function Navbar() {
         "
       >
         {/* Logo */}
-        <div>
+        <div className="cursor-pointer">
           <h1
             className="
               font-bold
@@ -104,13 +104,19 @@ export default function Navbar() {
           "
         >
           {links.map((link) => (
-            <button
+            <motion.button
               key={link.name}
               onClick={() => scrollToSection(link.href)}
+              whileTap={{
+                scale: 0.95,
+              }}
               className="
                 relative
+                cursor-pointer
                 hover:text-cyan-400
-                transition
+                hover:scale-105
+                transition-all
+                duration-300
                 group
               "
             >
@@ -129,14 +135,20 @@ export default function Navbar() {
                   duration-300
                 "
               />
-            </button>
+            </motion.button>
           ))}
 
-          {/* Resume Button */}
-          <a
+          {/* Resume */}
+          <motion.a
             href="/AymanKhairiCv.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            whileHover={{
+              scale: 1.05,
+            }}
+            whileTap={{
+              scale: 0.95,
+            }}
             className="
               flex
               items-center
@@ -147,7 +159,9 @@ export default function Navbar() {
               bg-cyan-500
               text-white
               font-medium
-              hover:scale-105
+              cursor-pointer
+              shadow-lg
+              shadow-cyan-500/20
               hover:bg-cyan-400
               transition-all
               duration-300
@@ -155,11 +169,14 @@ export default function Navbar() {
           >
             <FileText size={16} />
             Resume
-          </a>
+          </motion.a>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
+        <motion.button
+          whileTap={{
+            scale: 0.9,
+          }}
           onClick={() => setOpen(!open)}
           className="
             md:hidden
@@ -168,10 +185,13 @@ export default function Navbar() {
             border
             border-white/10
             bg-white/5
+            cursor-pointer
+            hover:bg-white/10
+            transition
           "
         >
           {open ? <X size={25} /> : <Menu size={25} />}
-        </button>
+        </motion.button>
       </div>
 
       {/* Mobile Menu */}
@@ -229,6 +249,9 @@ export default function Navbar() {
                     opacity: 1,
                     x: 0,
                   }}
+                  whileTap={{
+                    scale: 0.95,
+                  }}
                   transition={{
                     delay: index * 0.08,
                   }}
@@ -236,18 +259,25 @@ export default function Navbar() {
                     text-left
                     text-lg
                     text-gray-300
+                    cursor-pointer
                     hover:text-cyan-400
-                    transition
+                    hover:translate-x-2
+                    transition-all
+                    duration-300
                   "
                 >
                   {link.name}
                 </motion.button>
               ))}
 
-              <a
+              {/* Mobile Resume */}
+              <motion.a
                 href="/AymanKhairiCv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                whileTap={{
+                  scale: 0.95,
+                }}
                 className="
                   flex
                   items-center
@@ -260,11 +290,14 @@ export default function Navbar() {
                   bg-cyan-500
                   text-white
                   font-medium
+                  cursor-pointer
+                  hover:bg-cyan-400
+                  transition-all
                 "
               >
                 <FileText size={16} />
                 Resume
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}
