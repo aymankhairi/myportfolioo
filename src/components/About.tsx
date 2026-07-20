@@ -274,29 +274,6 @@ export default function About() {
                 </div>
               </motion.div>
             ))}
-            <div className="flex flex-wrap gap-3 mt-8">
-              {[
-                "Web Applications",
-                "E-Commerce",
-                "Business Systems",
-                "Mobile Apps",
-                "Custom Software",
-              ].map((item) => (
-                <span
-                  key={item}
-                  className="
-        px-4
-        py-2
-        rounded-full
-        border
-        border-white/10
-        bg-white/5
-      "
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
           </motion.div>
         </div>
 

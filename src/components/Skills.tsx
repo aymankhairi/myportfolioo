@@ -4,41 +4,33 @@ import { motion, Variants } from "framer-motion";
 
 const skills = [
   {
-    category: "Frontend",
+    category: "Frontend Development",
     items: [
       "React",
+      "Next.js",
       "TypeScript",
+      "Tailwind CSS",
       "HTML5",
       "CSS3",
       "JavaScript",
       "Bootstrap",
-      "Tailwind CSS",
-      "Next.js",
     ],
   },
   {
-    category: "Backend",
-    items: [
-      "Entity Framework Core",
-      "LINQ",
-      "C#",
-      "ASP.NET MVC",
-      "ASP.NET Core",
-      "PHP",
-      "REST APIs",
-    ],
+    category: "Backend Development",
+    items: ["C#", "ASP.NET Core", "Entity Framework Core", "REST APIs", "PHP"],
   },
   {
-    category: "Database",
+    category: "Database & Storage",
     items: ["SQL Server", "Database Design", "Data Management"],
   },
   {
     category: "Mobile Development",
-    items: ["Flutter", "Dart", "Firebase Cloud Messaging"],
+    items: ["Flutter", "Dart", "Firebase", "Mobile UI Development"],
   },
   {
-    category: "Tools",
-    items: ["Postman", "Git", "GitHub", "VS Code", "Microsoft Office"],
+    category: "Tools & Workflow",
+    items: ["Git", "GitHub", "Postman", "VS Code", "Netlify", "Vercel"],
   },
 ];
 
@@ -170,8 +162,8 @@ export default function Skills() {
             leading-relaxed
           "
           >
-            Modern technologies, frameworks, and development tools used to build
-            scalable web applications, enterprise systems, and mobile solutions.
+            A versatile technology stack for building modern web applications,
+            scalable backend systems, and production-ready digital products.
           </p>
         </motion.div>
 
@@ -275,18 +267,6 @@ export default function Skills() {
             </motion.div>
           ))}
         </div>
-
-        {/* Bottom Stats */}
-        <motion.div
-          variants={item}
-          className="
-          mt-20
-          grid
-          grid-cols-2
-          md:grid-cols-4
-          gap-6
-        "
-        ></motion.div>
       </motion.div>
     </section>
   );
