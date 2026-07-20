@@ -118,7 +118,7 @@ export default function Hero() {
             tracking-tight
           "
         >
-          Building Software
+          From Idea
           <br />
           <span
             className="
@@ -132,7 +132,7 @@ export default function Hero() {
               animate-gradient
             "
           >
-            That Businesses Actually Use
+            to Production
           </span>
         </motion.h1>
 
