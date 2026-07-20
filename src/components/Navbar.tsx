@@ -13,13 +13,14 @@ export default function Navbar() {
       href: "#about",
     },
     {
-      name: "Projects",
-      href: "#projects",
-    },
-    {
       name: "Skills",
       href: "#skills",
     },
+    {
+      name: "Projects",
+      href: "#projects",
+    },
+
     {
       name: "Education",
       href: "#education",
