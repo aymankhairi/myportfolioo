@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { GraduationCap } from "lucide-react";
 
 export default function Education() {
   const container: Variants = {
@@ -27,11 +28,12 @@ export default function Education() {
   };
 
   const skills = [
-    "Software Development",
-    "Programming",
-    "Database Systems",
-    "Application Design",
+    "Software Engineering",
     "Web Development",
+    "Database Design",
+    "Application Architecture",
+    "Programming",
+    "System Analysis",
   ];
 
   return (
@@ -46,6 +48,7 @@ export default function Education() {
       "
     >
       {/* Background Glow */}
+
       <div
         className="
         absolute
@@ -55,9 +58,9 @@ export default function Education() {
         -translate-y-1/2
         w-[800px]
         h-[800px]
+        rounded-full
         bg-cyan-500/5
         blur-[200px]
-        rounded-full
         pointer-events-none
         "
       />
@@ -71,13 +74,14 @@ export default function Education() {
           amount: 0.2,
         }}
         className="
-        max-w-6xl
-        mx-auto
         relative
         z-10
+        max-w-6xl
+        mx-auto
         "
       >
         {/* Header */}
+
         <motion.div
           variants={item}
           className="
@@ -91,51 +95,51 @@ export default function Education() {
             uppercase
             tracking-[5px]
             text-sm
-            font-medium
             "
           >
-            Academic Background
+            Education & Foundation
           </span>
 
           <h2
             className="
-            mt-4
+            mt-5
             text-4xl
             md:text-6xl
             font-bold
             "
           >
-            Education
+            Academic Background
           </h2>
 
           <p
             className="
-            mt-5
-            text-gray-400
+            mt-6
             max-w-2xl
             mx-auto
+            text-gray-400
             text-lg
+            leading-relaxed
             "
           >
-            Academic foundation in software engineering, programming, and modern
-            technology solutions.
+            A strong foundation in software engineering, programming principles,
+            and building reliable technology solutions.
           </p>
         </motion.div>
 
-        {/* Education Card */}
+        {/* Card */}
+
         <motion.div
           variants={item}
           whileHover={{
             y: -8,
           }}
           className="
-          relative
           max-w-4xl
           mx-auto
           group
+          relative
           "
         >
-          {/* Glow Border */}
           <div
             className="
             absolute
@@ -143,7 +147,6 @@ export default function Education() {
             rounded-3xl
             bg-gradient-to-r
             from-cyan-500/20
-            via-transparent
             to-blue-500/20
             blur-xl
             opacity-0
@@ -163,57 +166,62 @@ export default function Education() {
             backdrop-blur-xl
             p-8
             md:p-10
-            overflow-hidden
             "
           >
-            {/* Top Shine Effect */}
-            <div
-              className="
-              absolute
-              top-0
-              left-0
-              w-full
-              h-px
-              bg-gradient-to-r
-              from-transparent
-              via-cyan-400
-              to-transparent
-              opacity-60
-              "
-            />
+            {/* Icon */}
 
             <div
               className="
               flex
+              items-start
               justify-between
-              flex-wrap
               gap-6
+              flex-wrap
               "
             >
-              <div>
-                <h3
+              <div
+                className="
+                flex
+                gap-4
+                items-center
+                "
+              >
+                <div
                   className="
-                  text-2xl
-                  md:text-3xl
-                  font-bold
+                  p-3
+                  rounded-2xl
+                  bg-cyan-500/10
+                  border
+                  border-cyan-400/20
                   "
                 >
-                  Technical Diploma in Computer Engineering
-                </h3>
+                  <GraduationCap className="text-cyan-400" size={28} />
+                </div>
 
-                <p
-                  className="
-                  text-cyan-400
-                  mt-3
-                  text-lg
-                  font-medium
-                  "
-                >
-                  Damascus University
-                </p>
+                <div>
+                  <h3
+                    className="
+                    text-2xl
+                    md:text-3xl
+                    font-bold
+                    "
+                  >
+                    Technical Diploma in Computer Engineering
+                  </h3>
+
+                  <p
+                    className="
+                    mt-2
+                    text-cyan-400
+                    font-medium
+                    "
+                  >
+                    Damascus University
+                  </p>
+                </div>
               </div>
 
-              <div
+              <span
                 className="
                 px-4
                 py-2
@@ -223,27 +231,28 @@ export default function Education() {
                 border-cyan-500/20
                 text-cyan-300
                 text-sm
-                h-fit
                 "
               >
-                Software Engineering
-              </div>
+                Computer Engineering
+              </span>
             </div>
 
             <p
               className="
-              text-gray-400
               mt-8
+              text-gray-400
               leading-8
               text-lg
               "
             >
-              Specialized in software engineering, software development,
-              database systems, application architecture, and analysis of
-              information and communication technology solutions.
+              Developed a strong foundation in software development, database
+              systems, programming concepts, and application design. The program
+              strengthened my ability to analyze problems, design solutions, and
+              build practical software systems.
             </p>
 
             {/* Skills */}
+
             <div
               className="
               flex
@@ -276,15 +285,14 @@ export default function Education() {
                   px-4
                   py-2
                   rounded-full
-                  bg-black/40
                   border
                   border-white/10
+                  bg-black/30
                   text-sm
                   text-gray-300
                   hover:text-white
                   hover:border-cyan-400/40
-                  transition-all
-                  duration-300
+                  transition
                   "
                 >
                   {skill}
