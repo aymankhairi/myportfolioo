@@ -234,7 +234,7 @@ export default async function GalleryProject({
                 <Images className="text-cyan-400 mb-4" />
                 <h3 className="font-semibold text-lg">Gallery</h3>
                 <p className="text-gray-400 mt-2">
-                  {project.gallery.length} Screenshots
+                  {(project.gallery ?? []).length} Screenshots
                 </p>
               </div>
 
@@ -341,8 +341,10 @@ export default async function GalleryProject({
           {/* Screenshots */}
           <section className="mt-24">
             <h2 className="text-4xl font-bold mb-10">Project Gallery</h2>
-
-            <ImageGallery images={project.gallery} title={project.title} />
+            <ImageGallery
+              images={project.gallery ?? []}
+              title={project.title}
+            />
           </section>
           <section className="mt-32 text-center">
             <div
