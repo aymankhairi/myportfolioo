@@ -41,7 +41,7 @@ export default function Education() {
       id="education"
       className="
       relative
-      py-32
+      py-12
       px-6
       overflow-hidden
       scroll-mt-24

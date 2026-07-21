@@ -100,7 +100,7 @@ export default function Hero() {
             uppercase
             tracking-[0.2em]
             text-sm
-            mb-6
+            
           "
         >
           Full Stack Software Developer

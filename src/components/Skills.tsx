@@ -70,7 +70,7 @@ export default function Skills() {
       id="skills"
       className="
       relative
-      py-32
+      py-10
       px-6
       overflow-hidden
       scroll-mt-24

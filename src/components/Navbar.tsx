@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, FileText } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+
+  const pathname = usePathname();
+  const router = useRouter();
 
   const links = [
     {
@@ -20,7 +25,6 @@ export default function Navbar() {
       name: "Projects",
       href: "#projects",
     },
-
     {
       name: "Education",
       href: "#education",
@@ -31,13 +35,21 @@ export default function Navbar() {
     },
   ];
 
-  const scrollToSection = (href: string) => {
+  const handleNavigation = (href: string) => {
     const targetId = href.replace("#", "");
 
-    document.getElementById(targetId)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    if (pathname === "/") {
+      const element = document.getElementById(targetId);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    } else {
+      router.push(`/${href}`);
+    }
   };
 
   return (
@@ -49,15 +61,17 @@ export default function Navbar() {
         ease: "easeOut",
       }}
       className="
-        fixed
-        top-0
-        w-full
-        z-50
-        bg-black/40
-        backdrop-blur-xl
-        border-b
-        border-white/10
-      "
+fixed
+top-0
+w-full
+z-50
+bg-black
+border-b
+border-white/10
+transition-all
+duration-300
+gallery-hide
+"
     >
       <div
         className="
@@ -71,50 +85,40 @@ export default function Navbar() {
         "
       >
         {/* Logo */}
-        <motion.button
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-          }}
-          whileHover={{
-            scale: 1.03,
-          }}
-          whileTap={{
-            scale: 0.97,
-          }}
+        <Link
+          href="/"
+          scroll={true}
           className="
-    text-left
-    cursor-pointer
-    group
-  "
+            text-left
+            cursor-pointer
+            group
+          "
         >
           <h1
             className="
-      font-bold
-      text-xl
-      tracking-wide
-      group-hover:text-cyan-400
-      transition
-    "
+              font-bold
+              text-xl
+              tracking-wide
+              group-hover:text-cyan-400
+              transition
+            "
           >
             Ayman Khairi
           </h1>
 
           <p
             className="
-      text-xs
-      text-gray-400
-      hidden
-      sm:block
-      group-hover:text-cyan-300
-      transition
-    "
+              text-xs
+              text-gray-400
+              hidden
+              sm:block
+              group-hover:text-cyan-300
+              transition
+            "
           >
             Full Stack Developer
           </p>
-        </motion.button>
+        </Link>
 
         {/* Desktop Menu */}
         <div
@@ -129,7 +133,7 @@ export default function Navbar() {
           {links.map((link) => (
             <motion.button
               key={link.name}
-              onClick={() => scrollToSection(link.href)}
+              onClick={() => handleNavigation(link.href)}
               whileTap={{
                 scale: 0.95,
               }}
@@ -255,15 +259,8 @@ export default function Navbar() {
               "
             >
               {links.map((link, index) => (
-                <motion.button
+                <motion.div
                   key={link.name}
-                  onClick={() => {
-                    setOpen(false);
-
-                    setTimeout(() => {
-                      scrollToSection(link.href);
-                    }, 250);
-                  }}
                   initial={{
                     opacity: 0,
                     x: -20,
@@ -272,25 +269,34 @@ export default function Navbar() {
                     opacity: 1,
                     x: 0,
                   }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
                   transition={{
                     delay: index * 0.08,
                   }}
-                  className="
-                    text-left
-                    text-lg
-                    text-gray-300
-                    cursor-pointer
-                    hover:text-cyan-400
-                    hover:translate-x-2
-                    transition-all
-                    duration-300
-                  "
                 >
-                  {link.name}
-                </motion.button>
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+
+                      setTimeout(() => {
+                        handleNavigation(link.href);
+                      }, 300);
+                    }}
+                    className="
+    block
+    w-full
+    text-left
+    text-lg
+    text-gray-300
+    cursor-pointer
+    hover:text-cyan-400
+    hover:translate-x-2
+    transition-all
+    duration-300
+  "
+                  >
+                    {link.name}
+                  </button>
+                </motion.div>
               ))}
 
               {/* Mobile Resume */}
