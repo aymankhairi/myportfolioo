@@ -257,6 +257,9 @@ export default async function GalleryProject({
           <div
             className="
     mt-20
+    w-full
+    max-w-5xl
+    mx-auto
     group
     rounded-3xl
     overflow-hidden
@@ -264,7 +267,6 @@ export default async function GalleryProject({
     border-white/10
     bg-white/[0.03]
     backdrop-blur-xl
-    shadow-[0_20px_80px_rgba(34,211,238,0.12)]
   "
           >
             <Image

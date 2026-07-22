@@ -246,7 +246,7 @@ export default function Projects() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-3">
                   <a
                     href={project.demo}
                     target="_blank"
@@ -270,7 +270,6 @@ export default function Projects() {
                     <ExternalLink size={16} />
                     Demo
                   </a>
-
                   {project.type !== "Client Project" && (
                     <a
                       href={project.github}

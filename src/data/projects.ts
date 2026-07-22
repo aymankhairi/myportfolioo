@@ -158,7 +158,6 @@ export const projects = [
       assetPath("/projects/reverie/reverie16.jpg"),
       assetPath("/projects/reverie/reverie17.jpg"),
       assetPath("/projects/reverie/reverie18.jpg"),
-      assetPath("/projects/reverie/reverie19.jpg"),
       assetPath("/projects/reverie/reverie20.jpg"),
       assetPath("/projects/reverie/reveriefooter.jpg"),
     ],
