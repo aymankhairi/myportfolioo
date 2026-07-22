@@ -312,7 +312,7 @@ hover:bg-cyan-500/20
 transition-all
 "
                   >
-                    Gallery
+                    Case Study
                   </a>
                 </div>
               </div>

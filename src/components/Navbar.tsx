@@ -167,7 +167,7 @@ gallery-hide
 
           {/* Resume */}
           <motion.a
-            href="/AymanKhairiCv.pdf"
+            href="/aymankhairicv1.pdf"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{
@@ -301,7 +301,7 @@ gallery-hide
 
               {/* Mobile Resume */}
               <motion.a
-                href="/AymanKhairiCv.pdf"
+                href="/aymankhairicv1.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileTap={{
